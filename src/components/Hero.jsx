@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { HiOutlineMail, HiOutlineDocumentDownload } from 'react-icons/hi';
 import useTypingAnimation from '../hooks/useTypingAnimation';
 import useScrollReveal from '../hooks/useScrollReveal';
@@ -10,6 +11,11 @@ export default function Hero() {
   const sectionRef = useRef(null);
   const prefersReducedMotion = useReducedMotion();
   const { displayText, isDeleting } = useTypingAnimation(personal.heroRoles);
+  const navigate = useNavigate();
+
+  const handleContactClick = () => {
+    navigate('/contact');
+  };
 
   // Parallax effect for profile image (disabled when reduced motion is preferred)
   const { scrollYProgress } = useScroll({
@@ -86,7 +92,7 @@ export default function Hero() {
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
               <Button
                 variant="primary"
-                href="/contact"
+                onClick={handleContactClick}
                 icon={<HiOutlineMail />}
               >
                 Contact Me
