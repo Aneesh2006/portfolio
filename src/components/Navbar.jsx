@@ -34,10 +34,10 @@ export default function Navbar() {
   return (
     <nav
       aria-label="Main navigation"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 ${
         scrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-sm'
-          : 'bg-transparent'
+          ? 'bg-white/80 shadow-sm'
+          : 'bg-white/40'
       }`}
     >
       <div className="content-container flex items-center justify-between h-16 md:h-20">

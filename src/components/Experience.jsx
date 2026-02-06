@@ -7,9 +7,9 @@ import experience from '../data/experience';
 
 /** Badge colors by employment type */
 const typeBadge = {
-  Freelance: 'bg-emerald-100 text-emerald-700',
-  Internship: 'bg-blue-100 text-blue-700',
-  'Full-time': 'bg-violet-100 text-violet-700',
+  Freelance: 'bg-card-bg text-primary',
+  Internship: 'bg-card-bg text-primary',
+  'Full-time': 'bg-card-bg text-primary',
 };
 
 function ExperienceCard({ item, index }) {
