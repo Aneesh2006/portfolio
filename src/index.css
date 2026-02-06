@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors — usable as Tailwind classes: bg-primary, text-secondary, etc. */
+  --color-primary: #222222;
+  --color-secondary: #7B7B7B;
+  --color-card-bg: #F8F8F8;
+  --color-page-bg: #FFFFFF;
+
+  /* Typography */
+  --font-display: 'Inter', 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Shadows — usable as: shadow-card, shadow-card-hover */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* Border Radius — usable as: rounded-sm, rounded-md */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+}
+
+:root {
+  /* Layout spacing */
+  --content-width: 1200px;
+  --section-padding: clamp(60px, 10vw, 120px);
+}
+
+/* Base styles */
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-primary);
+  background-color: var(--color-page-bg);
+  line-height: 1.6;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-width: 320px;
+}
+
+/* Utility: content container */
+.content-container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding-left: clamp(16px, 4vw, 48px);
+  padding-right: clamp(16px, 4vw, 48px);
+}
+
+/* Section vertical rhythm */
+.section-padding {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+}
+
+/* Accessibility: disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
