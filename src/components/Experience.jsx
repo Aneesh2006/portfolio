@@ -40,7 +40,7 @@ function ExperienceCard({ item, index }) {
 
           <span
             className={`self-start text-xs font-medium px-3 py-1 rounded-full whitespace-nowrap ${
-              typeBadge[item.type] || 'bg-gray-100 text-gray-700'
+              typeBadge[item.type] || 'bg-card-bg text-secondary'
             }`}
           >
             {item.type}

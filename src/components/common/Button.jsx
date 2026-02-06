@@ -21,9 +21,9 @@ const Button = forwardRef(function Button(
 
   const variants = {
     primary:
-      'bg-primary text-white hover:bg-primary/90 hover:scale-[1.03] active:scale-[0.98]',
+      'bg-[#222222] dark:bg-white text-white dark:text-[#222222] hover:opacity-90 hover:scale-[1.03] active:scale-[0.98]',
     outline:
-      'border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-white hover:scale-[1.03] active:scale-[0.98]',
+      'border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-page-bg hover:scale-[1.03] active:scale-[0.98]',
     ghost:
       'text-primary bg-transparent hover:bg-primary/5 hover:scale-[1.02] active:scale-[0.98]',
   };

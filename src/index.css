@@ -1,11 +1,16 @@
 @import "tailwindcss";
 
+/* Use class-based dark mode instead of media query */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Colors — usable as Tailwind classes: bg-primary, text-secondary, etc. */
   --color-primary: #222222;
   --color-secondary: #757575;
   --color-card-bg: #F8F8F8;
   --color-page-bg: #FFFFFF;
+  --color-border: #E5E5E5;
+  --color-input-bg: #FFFFFF;
 
   /* Typography */
   --font-display: 'Inter', 'Manrope', sans-serif;
@@ -18,6 +23,19 @@
   /* Border Radius — usable as: rounded-sm, rounded-md */
   --radius-sm: 6px;
   --radius-md: 12px;
+}
+
+/* ── Dark theme overrides ──────────────────────────────────────────────── */
+.dark {
+  --color-primary: #E5E5E5;
+  --color-secondary: #A0A0A0;
+  --color-card-bg: #1A1A1A;
+  --color-page-bg: #0F0F0F;
+  --color-border: #2A2A2A;
+  --color-input-bg: #1A1A1A;
+
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 :root {
@@ -44,6 +62,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-width: 320px;
+}
+
+/* Smooth theme transitions (colors only — doesn't affect transforms/animations).
+   Uses low specificity so Tailwind utility transitions can override. */
+html.dark *,
+html:not(.dark) * {
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
 }
 
 /* Ensure sections clear the fixed navbar when scrolled to */

@@ -89,7 +89,7 @@ export default function ProjectCard({ project, index = 0 }) {
 
           {/* Action links */}
           {(project.github || project.live) && (
-            <div className="flex items-center gap-3 pt-2 border-t border-primary/10">
+            <div className="flex items-center gap-3 pt-2 border-t border-border">
               {project.github && (
                 <Button
                   variant="ghost"

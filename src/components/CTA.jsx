@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { HiOutlineMail } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 import useScrollReveal from '../hooks/useScrollReveal';
 import SectionHeading from './common/SectionHeading';
-import Button from './common/Button';
 import personal from '../data/personal';
 
 /**
@@ -32,14 +32,13 @@ export default function CTA() {
             align="center"
           />
 
-          <Button
-            variant="primary"
-            href={personal.social.email}
-            icon={<HiOutlineMail />}
-            className="text-base px-8 py-4"
+          <Link
+            to="/contact"
+            className="inline-flex items-center justify-center gap-2 font-medium rounded-sm px-8 py-4 text-base tracking-wide cursor-pointer transition-all duration-200 ease-in-out bg-[#222222] dark:bg-white text-white dark:text-[#222222] hover:opacity-90 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
+            <span className="text-lg"><HiOutlineMail /></span>
             Contact Me
-          </Button>
+          </Link>
         </motion.div>
       </div>
     </section>

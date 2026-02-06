@@ -1,5 +1,6 @@
 import './App.css'
 import { lazy, Suspense } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 
@@ -10,6 +11,7 @@ const TechStack = lazy(() => import('./components/TechStack'))
 const Certificates = lazy(() => import('./components/Certificates'))
 const CTA = lazy(() => import('./components/CTA'))
 const Footer = lazy(() => import('./components/Footer'))
+const Contact = lazy(() => import('./components/Contact'))
 
 /** Minimal fallback while lazy sections load */
 function SectionFallback() {
@@ -24,13 +26,40 @@ function SectionFallback() {
   )
 }
 
+/** Home page — all portfolio sections */
+function HomePage() {
+  return (
+    <>
+      <Hero />
+      <Suspense fallback={<SectionFallback />}>
+        <Experience />
+        <Projects />
+        <TechStack />
+        <Certificates />
+        <CTA />
+      </Suspense>
+    </>
+  )
+}
+
+/** Contact page */
+function ContactPage() {
+  return (
+    <Suspense fallback={<SectionFallback />}>
+      {/* Spacer for fixed navbar */}
+      <div className="h-16 md:h-20" />
+      <Contact />
+    </Suspense>
+  )
+}
+
 function App() {
   return (
     <div className="min-h-screen bg-page-bg text-primary font-body">
       {/* Skip-to-content for accessibility */}
       <a
         href="#about"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-md focus:text-sm"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#222222] dark:focus:bg-white focus:text-white dark:focus:text-[#222222] focus:rounded-md focus:text-sm"
       >
         Skip to content
       </a>
@@ -38,14 +67,10 @@ function App() {
       <Navbar />
 
       <main className="relative" id="main-content">
-        <Hero />
-        <Suspense fallback={<SectionFallback />}>
-          <Experience />
-          <Projects />
-          <TechStack />
-          <Certificates />
-          <CTA />
-        </Suspense>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
       </main>
 
       <Suspense fallback={null}>

@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import { SiLeetcode, SiCodechef } from 'react-icons/si';
 import { HiOutlineMail } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 import useScrollReveal from '../hooks/useScrollReveal';
 import personal from '../data/personal';
 
@@ -38,7 +39,7 @@ const footerNav = [
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Tech Stack', href: '#tech-stack' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact', href: '/contact', isRoute: true },
 ];
 
 export default function Footer() {
@@ -46,7 +47,7 @@ export default function Footer() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <footer className="bg-primary text-white" role="contentinfo">
+    <footer className="bg-[#222222] text-white" role="contentinfo">
       <motion.div
         ref={ref}
         initial="hidden"
@@ -93,14 +94,23 @@ export default function Footer() {
         {/* Navigation links */}
         <nav aria-label="Footer navigation" className="mb-10">
           <ul className="flex flex-wrap justify-center gap-x-8 gap-y-3">
-            {footerNav.map(({ label, href }) => (
+            {footerNav.map(({ label, href, isRoute }) => (
               <li key={label}>
-                <a
-                  href={href}
-                  className="text-sm text-white/60 hover:text-white transition-colors"
-                >
-                  {label}
-                </a>
+                {isRoute ? (
+                  <Link
+                    to={href}
+                    className="text-sm text-white/60 hover:text-white transition-colors"
+                  >
+                    {label}
+                  </Link>
+                ) : (
+                  <a
+                    href={href}
+                    className="text-sm text-white/60 hover:text-white transition-colors"
+                  >
+                    {label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
