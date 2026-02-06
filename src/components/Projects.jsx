@@ -71,11 +71,10 @@ export default function Projects() {
           {/* Scrollable row */}
           <div
             ref={scrollRef}
-            className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-1 px-1"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-1 px-1 scrollbar-hide"
           >
             {projects.map((project, i) => (
-              <div key={project.id} className="w-[85vw] max-w-[340px] shrink-0 snap-start">
+              <div key={project.id} className="w-[80vw] min-w-[260px] max-w-[340px] shrink-0 snap-start">
                 <ProjectCard project={project} index={i} />
               </div>
             ))}

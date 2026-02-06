@@ -3,7 +3,7 @@
 @theme {
   /* Colors — usable as Tailwind classes: bg-primary, text-secondary, etc. */
   --color-primary: #222222;
-  --color-secondary: #7B7B7B;
+  --color-secondary: #757575;
   --color-card-bg: #F8F8F8;
   --color-page-bg: #FFFFFF;
 
@@ -27,6 +27,11 @@
 }
 
 /* Base styles */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* offset for fixed navbar */
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -39,6 +44,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-width: 320px;
+}
+
+/* Ensure sections clear the fixed navbar when scrolled to */
+section[id] {
+  scroll-margin-top: 5rem;
 }
 
 /* Utility: content container */
@@ -55,6 +65,25 @@ body {
   padding-bottom: var(--section-padding);
 }
 
+/* Critical: ensure font-display swap for Google Fonts performance */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Manrope';
+  font-display: swap;
+}
+
+/* Hide native scrollbar for horizontal snap-scroll containers */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Accessibility: disable animations for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -64,5 +93,9 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }

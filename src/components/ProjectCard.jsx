@@ -35,6 +35,9 @@ export default function ProjectCard({ project, index = 0 }) {
             alt={`${project.title} screenshot`}
             className="w-full h-48 object-cover"
             loading="lazy"
+            decoding="async"
+            width={400}
+            height={192}
           />
         ) : (
           <div className="w-full h-44 bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center">

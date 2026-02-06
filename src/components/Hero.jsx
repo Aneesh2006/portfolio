@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useRef } from 'react';
 import { HiOutlineMail, HiOutlineDocumentDownload } from 'react-icons/hi';
 import useTypingAnimation from '../hooks/useTypingAnimation';
@@ -8,14 +8,19 @@ import personal from '../data/personal';
 
 export default function Hero() {
   const sectionRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
   const { displayText, isDeleting } = useTypingAnimation(personal.heroRoles);
 
-  // Parallax effect for profile image
+  // Parallax effect for profile image (disabled when reduced motion is preferred)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const imageY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    prefersReducedMotion ? [0, 0] : [0, 60]
+  );
 
   // Scroll-reveal for text content
   const { ref: textRef, controls: textControls, variants: textVariants } =
@@ -113,6 +118,8 @@ export default function Hero() {
                 alt={`Portrait of ${personal.name}`}
                 className="w-full h-full object-cover"
                 loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 width={360}
                 height={360}
               />
@@ -127,27 +134,29 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
-      >
-        <span className="text-secondary text-xs tracking-widest uppercase">
-          Scroll
-        </span>
+      {/* Scroll indicator (hidden when reduced motion preferred) */}
+      {!prefersReducedMotion && (
         <motion.div
-          className="w-5 h-8 rounded-full border-2 border-secondary/40 flex justify-center pt-1.5"
-          aria-hidden="true"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
         >
+          <span className="text-secondary text-xs tracking-widest uppercase">
+            Scroll
+          </span>
           <motion.div
-            className="w-1 h-1.5 rounded-full bg-secondary"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-          />
+            className="w-5 h-8 rounded-full border-2 border-secondary/40 flex justify-center pt-1.5"
+            aria-hidden="true"
+          >
+            <motion.div
+              className="w-1 h-1.5 rounded-full bg-secondary"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            />
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
     </section>
   );
 }

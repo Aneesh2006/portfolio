@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { HiOutlineMenuAlt3, HiX } from 'react-icons/hi';
 import Button from './common/Button';
 
@@ -14,6 +14,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   // Track scroll for sticky background
   useEffect(() => {
@@ -42,8 +43,9 @@ export default function Navbar() {
       <div className="content-container flex items-center justify-between h-16 md:h-20">
         {/* Logo / Name */}
         <a
-          href="#"
+          href="#about"
           className="font-display font-semibold text-lg tracking-tight text-primary"
+          aria-label="Aneesh Kumar — back to top"
         >
           Aneesh Kumar
         </a>
@@ -81,10 +83,10 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.2, ease: 'easeOut' }}
             className="md:hidden absolute top-16 inset-x-0 bg-white shadow-lg border-t border-gray-100"
           >
             <ul className="flex flex-col py-4">
