@@ -35,11 +35,11 @@ export default function Navbar() {
 
   const handleLinkClick = () => setMobileOpen(false);
 
-  /** Resolve hash links: on /contact page, prefix with / to navigate home first */
+  /** Resolve hash links: always use full path for React Router */
   const resolveHref = (link) => {
     if (link.isRoute) return link.href;
-    if (location.pathname !== '/') return `/${link.href}`;
-    return link.href;
+    // Always prefix with / for hash links to ensure React Router handles navigation
+    return `/${link.href}`;
   };
 
   return (
@@ -69,7 +69,6 @@ export default function Navbar() {
                 <NavLink
                   href={resolveHref(link)}
                   label={link.label}
-                  isRoute={link.isRoute}
                   isActive={link.isRoute && location.pathname === link.href}
                 />
               </li>
@@ -105,23 +104,13 @@ export default function Navbar() {
             <ul className="flex flex-col py-4">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  {link.isRoute ? (
-                    <Link
-                      to={link.href}
-                      onClick={handleLinkClick}
-                      className="block px-6 py-3 text-sm font-medium text-primary hover:bg-card-bg transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <a
-                      href={resolveHref(link)}
-                      onClick={handleLinkClick}
-                      className="block px-6 py-3 text-sm font-medium text-primary hover:bg-card-bg transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  )}
+                  <Link
+                    to={resolveHref(link)}
+                    onClick={handleLinkClick}
+                    className="block px-6 py-3 text-sm font-medium text-primary hover:bg-card-bg transition-colors"
+                  >
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -134,9 +123,8 @@ export default function Navbar() {
 
 /**
  * Individual nav link with animated underline on hover.
- * Supports both hash links (same-page) and route links (React Router).
  */
-function NavLink({ href, label, isRoute, isActive }) {
+function NavLink({ href, label, isActive }) {
   const classes = `relative text-sm font-medium transition-colors duration-200 group py-1 ${
     isActive ? 'text-primary' : 'text-secondary hover:text-primary'
   }`;
@@ -149,20 +137,11 @@ function NavLink({ href, label, isRoute, isActive }) {
     />
   );
 
-  if (isRoute) {
-    return (
-      <Link to={href} className={classes}>
-        {label}
-        {underline}
-      </Link>
-    );
-  }
-
   return (
-    <a href={href} className={classes}>
+    <Link to={href} className={classes}>
       {label}
       {underline}
-    </a>
+    </Link>
   );
 }
 

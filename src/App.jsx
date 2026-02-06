@@ -1,6 +1,6 @@
 import './App.css'
-import { lazy, Suspense } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { lazy, Suspense, useEffect } from 'react'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 
@@ -12,6 +12,28 @@ const Certificates = lazy(() => import('./components/Certificates'))
 const CTA = lazy(() => import('./components/CTA'))
 const Footer = lazy(() => import('./components/Footer'))
 const Contact = lazy(() => import('./components/Contact'))
+
+/** Scroll to hash anchor when location changes */
+function ScrollToHash() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      // Small delay to allow lazy components to render
+      const timer = setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    } else if (pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [pathname, hash]);
+
+  return null;
+}
 
 /** Minimal fallback while lazy sections load */
 function SectionFallback() {
@@ -56,6 +78,7 @@ function ContactPage() {
 function App() {
   return (
     <div className="min-h-screen bg-page-bg text-primary font-body">
+      <ScrollToHash />
       {/* Skip-to-content for accessibility */}
       <a
         href="#about"
@@ -70,6 +93,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
 

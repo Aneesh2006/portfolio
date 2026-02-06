@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import { SiLeetcode, SiCodechef } from 'react-icons/si';
 import { HiOutlineMail } from 'react-icons/hi';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import useScrollReveal from '../hooks/useScrollReveal';
 import personal from '../data/personal';
 
@@ -45,6 +45,14 @@ const footerNav = [
 export default function Footer() {
   const { ref, controls, variants } = useScrollReveal({ y: 20, duration: 0.5 });
   const prefersReducedMotion = useReducedMotion();
+  const location = useLocation();
+
+  /** Resolve hash links: on /contact page, prefix with / to navigate home first */
+  const resolveHref = (link) => {
+    if (link.isRoute) return link.href;
+    if (location.pathname !== '/') return `/${link.href}`;
+    return link.href;
+  };
 
   return (
     <footer className="bg-[#222222] text-white" role="contentinfo">
@@ -57,12 +65,12 @@ export default function Footer() {
       >
         {/* Top row — branding + email CTA */}
         <div className="flex flex-col items-center text-center gap-6 mb-12">
-          <a
-            href="#about"
+          <Link
+            to={location.pathname !== '/' ? '/#about' : '#about'}
             className="text-2xl font-display font-bold tracking-tight hover:opacity-80 transition-opacity"
           >
             {personal.name}
-          </a>
+          </Link>
 
           <a
             href={personal.social.email}
@@ -98,21 +106,12 @@ export default function Footer() {
           <ul className="flex flex-wrap justify-center gap-x-8 gap-y-3">
             {footerNav.map(({ label, href, isRoute }) => (
               <li key={label}>
-                {isRoute ? (
-                  <Link
-                    to={href}
-                    className="text-sm text-white/60 hover:text-white transition-colors"
-                  >
-                    {label}
-                  </Link>
-                ) : (
-                  <a
-                    href={href}
-                    className="text-sm text-white/60 hover:text-white transition-colors"
-                  >
-                    {label}
-                  </a>
-                )}
+                <Link
+                  to={resolveHref({ href, isRoute })}
+                  className="text-sm text-white/60 hover:text-white transition-colors"
+                >
+                  {label}
+                </Link>
               </li>
             ))}
           </ul>
