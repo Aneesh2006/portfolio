@@ -23,10 +23,10 @@ import {
   SiRender,
   SiRailway,
   SiGooglecloud,
-  SiMicrosoftazure,
 } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa';
 import { SiN8N, SiMake } from 'react-icons/si';
+import { VscAzure } from 'react-icons/vsc';
 
 const techStack = {
   languages: [
@@ -64,7 +64,7 @@ const techStack = {
     { name: 'Render', icon: SiRender },
     { name: 'Railway', icon: SiRailway },
     { name: 'Google Cloud', icon: SiGooglecloud },
-    { name: 'Azure', icon: SiMicrosoftazure },
+    { name: 'Azure', icon: VscAzure },
   ],
 };
 
