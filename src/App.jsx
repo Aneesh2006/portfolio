@@ -1,6 +1,8 @@
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import Experience from './components/Experience'
+import Projects from './components/Projects'
 
 function App() {
   return (
@@ -8,8 +10,8 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        {/* Experience */}
-        {/* Projects */}
+        <Experience />
+        <Projects />
         {/* TechStack */}
         {/* Certificates */}
         {/* CTA */}
