@@ -25,46 +25,113 @@ import {
   SiGooglecloud,
 } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa';
-import { SiN8N, SiMake } from 'react-icons/si';
+import { SiN8N, SiMake, SiOdoo } from 'react-icons/si';
 import { VscAzure } from 'react-icons/vsc';
 
 const techStack = {
   languages: [
-    { name: 'Python', icon: SiPython },
-    { name: 'C/C++', icon: SiCplusplus },
-    { name: 'Java', icon: FaJava },
-    { name: 'JavaScript', icon: SiJavascript },
-    { name: 'TypeScript', icon: SiTypescript },
-    { name: 'SQL', icon: SiMysql },
+    { name: 'Python', icon: SiPython, color: '#3776AB' },
+    { name: 'C/C++', icon: SiCplusplus, color: '#00599C' },
+    {
+      name: 'Java',
+      icon: FaJava,
+      color: '#f89820',
+      svgGradient: {
+        id: 'grad-java',
+        attrs: { x1: '0%', y1: '0%', x2: '0%', y2: '100%' },
+        stops: [
+          { offset: '0%', color: '#f89820' },
+          { offset: '100%', color: '#5382a1' },
+        ],
+      },
+    },
+    { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
+    { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
+    { name: 'SQL', icon: SiMysql, color: '#4479A1' },
   ],
   databases: [
-    { name: 'MongoDB', icon: SiMongodb },
-    { name: 'MySQL', icon: SiMysql },
-    { name: 'PostgreSQL', icon: SiPostgresql },
+    { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
+    { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
+    { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
   ],
   frameworks: [
-    { name: 'Node.js', icon: SiNodedotjs },
-    { name: 'Express.js', icon: SiExpress },
-    { name: 'React', icon: SiReact },
-    { name: 'Next.js', icon: SiNextdotjs },
-    { name: 'Tailwind CSS', icon: SiTailwindcss },
-    { name: 'Three.js', icon: SiThreedotjs },
+    { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
+    { name: 'Express.js', icon: SiExpress, color: '#000000' },
+    { name: 'React', icon: SiReact, color: '#61DAFB' },
+    { name: 'Next.js', icon: SiNextdotjs, color: '#000000' },
+    { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4' },
+    { name: 'Three.js', icon: SiThreedotjs, color: '#000000' },
   ],
   tools: [
-    { name: 'n8n', icon: SiN8N },
-    { name: 'Make', icon: SiMake },
-    { name: 'Git', icon: SiGit },
-    { name: 'GitHub', icon: SiGithub },
-    { name: 'Postman', icon: SiPostman },
-    { name: 'Docker', icon: SiDocker },
-    { name: 'Selenium', icon: SiSelenium },
-    { name: 'Figma', icon: SiFigma },
-    { name: 'LaTeX', icon: SiLatex },
-    { name: 'Vercel', icon: SiVercel },
-    { name: 'Render', icon: SiRender },
-    { name: 'Railway', icon: SiRailway },
-    { name: 'Google Cloud', icon: SiGooglecloud },
-    { name: 'Azure', icon: VscAzure },
+    { name: 'n8n', icon: SiN8N, color: '#F26E60' },
+    {
+      name: 'Make',
+      icon: SiMake,
+      color: '#9761c9',
+      svgGradient: {
+        id: 'grad-make',
+        attrs: { x1: '0%', y1: '0%', x2: '100%', y2: '100%' },
+        stops: [
+          { offset: '0%', color: '#6D00CC' },
+          { offset: '50%', color: '#9B51E0' },
+          { offset: '100%', color: '#CE82FF' },
+        ],
+      },
+    },
+    { name: 'Git', icon: SiGit, color: '#F05032' },
+    { name: 'GitHub', icon: SiGithub, color: '#181717' },
+    { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
+    { name: 'Docker', icon: SiDocker, color: '#2496ED' },
+    { name: 'Selenium', icon: SiSelenium, color: '#43B02A' },
+    {
+      name: 'Figma',
+      icon: SiFigma,
+      color: '#F24E1E',
+      svgGradient: {
+        id: 'grad-figma',
+        attrs: { x1: '0%', y1: '0%', x2: '0%', y2: '100%' },
+        stops: [
+          { offset: '0%', color: '#F24E1E' },
+          { offset: '25%', color: '#FF7262' },
+          { offset: '50%', color: '#A259FF' },
+          { offset: '75%', color: '#0ACF83' },
+          { offset: '100%', color: '#1ABCFE' },
+        ],
+      },
+    },
+    { name: 'LaTeX', icon: SiLatex, color: '#008080' },
+    { name: 'Vercel', icon: SiVercel, color: '#000000' },
+    { name: 'Render', icon: SiRender, color: '#000000' },
+    { name: 'Railway', icon: SiRailway, color: '#0B0D0E' },
+    {
+      name: 'Google Cloud',
+      icon: SiGooglecloud,
+      color: '#4285F4',
+      svgGradient: {
+        id: 'grad-gcloud',
+        attrs: { x1: '0%', y1: '0%', x2: '100%', y2: '0%' },
+        stops: [
+          { offset: '0%', color: '#4285F4' },
+          { offset: '33%', color: '#EA4335' },
+          { offset: '66%', color: '#FBBC05' },
+          { offset: '100%', color: '#34A853' },
+        ],
+      },
+    },
+    { name: 'Azure', icon: VscAzure, color: '#0078D4' },
+    {
+      name: 'Odoo',
+      icon: SiOdoo,
+      color: '#714B67',
+      svgGradient: {
+        id: 'grad-odoo',
+        attrs: { x1: '0%', y1: '0%', x2: '100%', y2: '0%' },
+        stops: [
+          { offset: '0%', color: '#714B67' },
+          { offset: '45%', color: '#8F8F8F' },
+        ],
+      },
+    },
   ],
 };
 

@@ -47,15 +47,18 @@ const itemVariantsReduced = {
   visible: { opacity: 1, scale: 1 },
 };
 
-function TechIcon({ name, icon: Icon, reducedMotion }) {
+function TechIcon({ name, icon: Icon, color, svgGradient, reducedMotion }) {
+  const iconColor = color || 'var(--color-secondary)';
+
   return (
     <motion.div
       variants={reducedMotion ? itemVariantsReduced : itemVariants}
-      className="group flex flex-col items-center gap-2 p-3 rounded-md
-                 hover:bg-card-bg hover:shadow-card transition-all duration-200"
+      className={`group flex flex-col items-center gap-2 p-3 rounded-md
+                 hover:bg-card-bg hover:shadow-card transition-all duration-200${svgGradient ? ` ${svgGradient.id}` : ''}`}
     >
       <Icon
-        className="text-3xl md:text-4xl text-secondary group-hover:text-primary transition-colors duration-200"
+        className="text-3xl md:text-4xl transition-transform duration-200 group-hover:scale-105"
+        style={svgGradient ? undefined : { color: iconColor }}
         aria-hidden="true"
       />
       <span className="text-xs md:text-sm text-secondary group-hover:text-primary transition-colors duration-200 text-center leading-tight">
@@ -82,12 +85,26 @@ function TechCategory({ categoryKey, items }) {
         className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-3"
       >
         {items.map((tech) => (
-          <TechIcon key={tech.name} name={tech.name} icon={tech.icon} reducedMotion={prefersReducedMotion} />
+          <TechIcon
+            key={tech.name}
+            name={tech.name}
+            icon={tech.icon}
+            color={tech.color}
+            svgGradient={tech.svgGradient}
+            reducedMotion={prefersReducedMotion}
+          />
         ))}
       </motion.div>
     </div>
   );
 }
+
+/** Collect SVG gradient definitions from all tech stack categories */
+const allGradients = categoryOrder.flatMap((key) =>
+  techStack[key]
+    .filter((t) => t.svgGradient)
+    .map((t) => t.svgGradient)
+);
 
 export default function TechStack() {
   return (
@@ -96,6 +113,31 @@ export default function TechStack() {
       className="section-padding content-container"
       aria-label="Technical skills"
     >
+      {/* SVG gradient definitions for multi-color icons */}
+      {allGradients.length > 0 && (
+        <>
+          <svg width="0" height="0" style={{ position: 'absolute' }}>
+            <defs>
+              {allGradients.map((g) => (
+                <linearGradient key={g.id} id={g.id} {...g.attrs}>
+                  {g.stops.map((stop, i) => (
+                    <stop key={i} offset={stop.offset} stopColor={stop.color} />
+                  ))}
+                </linearGradient>
+              ))}
+            </defs>
+          </svg>
+          <style>
+            {allGradients
+              .map(
+                (g) =>
+                  `.${g.id} svg,\n.${g.id} svg path,\n.${g.id} svg rect,\n.${g.id} svg circle,\n.${g.id} svg polygon { fill: url(#${g.id}) !important; }`
+              )
+              .join('\n')}
+          </style>
+        </>
+      )}
+
       <SectionHeading
         title="Tech Stack"
         subtitle="Technologies and tools I work with"
