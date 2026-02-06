@@ -86,7 +86,7 @@ export default function Hero() {
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
               <Button
                 variant="primary"
-                href="mailto:aneeshkumar822006@gmail.com"
+                href="/contact"
                 icon={<HiOutlineMail />}
               >
                 Contact Me

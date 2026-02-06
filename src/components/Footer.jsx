@@ -66,6 +66,8 @@ export default function Footer() {
 
           <a
             href={personal.social.email}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-white/70 hover:text-white transition-colors text-sm md:text-base break-all"
           >
             {personal.email}

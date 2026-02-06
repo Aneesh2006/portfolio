@@ -201,6 +201,8 @@ export default function Contact() {
                       {href ? (
                         <a
                           href={href}
+                          target={href.startsWith('mailto:') || href.startsWith('tel:') ? '_blank' : undefined}
+                          rel={href.startsWith('mailto:') || href.startsWith('tel:') ? 'noopener noreferrer' : undefined}
                           className="text-sm text-primary hover:text-primary/70 transition-colors break-all"
                         >
                           {value}

@@ -12,17 +12,17 @@ const personal = {
   },
 
   social: {
-    linkedin: 'https://www.linkedin.com/in/aneeshkumar',
-    github: 'https://github.com/aneeshkumar',
+    linkedin: 'https://www.linkedin.com/in/aneesh-kumar-m/',
+    github: 'https://github.com/Aneesh2006',
     email: 'mailto:aneeshkumar822006@gmail.com',
-    leetcode: 'https://leetcode.com/aneeshkumar',
-    codechef: 'https://www.codechef.com/users/aneeshkumar',
+    leetcode: 'https://leetcode.com/u/aneeshkumar822006/',
+    codechef: 'https://www.codechef.com/users/aneeshkumar08',
   },
 
   heroRoles: [
     'Full-Stack Developer',
     'AI Automation Specialist',
-    'Problem Solver',
+    'AI Agents Enthusiast',
   ],
 
   summary:

@@ -31,14 +31,16 @@ const Button = forwardRef(function Button(
   const classes = `${base} ${variants[variant] || variants.primary} ${className}`;
 
   if (href) {
+    const isExternal = href.startsWith('http');
+    const isMailOrTel = href.startsWith('mailto:') || href.startsWith('tel:');
     return (
       <a
         ref={ref}
         href={href}
         className={classes}
         onClick={onClick}
-        target={href.startsWith('http') ? '_blank' : undefined}
-        rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+        target={isExternal || isMailOrTel ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
         {...rest}
       >
         {icon && <span className="text-lg">{icon}</span>}
