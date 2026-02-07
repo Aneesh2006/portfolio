@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import SectionHeading from './common/SectionHeading';
 import techStack from '../data/techStack';
+import { useTheme } from '../context/ThemeContext';
 
 /** Human-readable labels for each category key */
 const categoryLabels = {
@@ -47,8 +48,9 @@ const itemVariantsReduced = {
   visible: { opacity: 1, scale: 1 },
 };
 
-function TechIcon({ name, icon: Icon, color, svgGradient, reducedMotion }) {
-  const iconColor = color || 'var(--color-secondary)';
+function TechIcon({ name, icon: Icon, color, darkColor, svgGradient, reducedMotion }) {
+  const { isDark } = useTheme();
+  const iconColor = (isDark && darkColor) ? darkColor : (color || 'var(--color-secondary)');
 
   return (
     <motion.div
@@ -90,6 +92,7 @@ function TechCategory({ categoryKey, items }) {
             name={tech.name}
             icon={tech.icon}
             color={tech.color}
+            darkColor={tech.darkColor}
             svgGradient={tech.svgGradient}
             reducedMotion={prefersReducedMotion}
           />
