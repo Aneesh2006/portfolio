@@ -8,11 +8,13 @@ const categoryLabels = {
   languages: 'Languages',
   databases: 'Databases',
   frameworks: 'Frameworks & Libraries',
-  tools: 'Tools & Platforms',
+  devopsCloud: 'DevOps & Cloud',
+  automationDesign: 'Automation & Design',
+  tools: 'Tools',
 };
 
 /** Order categories should appear */
-const categoryOrder = ['languages', 'frameworks', 'databases', 'tools'];
+const categoryOrder = ['languages', 'frameworks', 'databases', 'devopsCloud', 'automationDesign', 'tools'];
 
 /** Stagger container variant for children */
 const containerVariants = {
