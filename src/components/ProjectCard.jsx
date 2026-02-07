@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 import useScrollReveal from '../hooks/useScrollReveal';
+import { useTheme } from '../context/ThemeContext';
 import Card from './common/Card';
 import Tag from './common/Tag';
 import Button from './common/Button';
@@ -18,6 +19,14 @@ export default function ProjectCard({ project, index = 0 }) {
     delay: index * 0.15,
     y: 30,
   });
+  const { isDark } = useTheme();
+
+  // Resolve thumbnail based on current theme
+  const thumbnailSrc = project.thumbnail
+    ? typeof project.thumbnail === 'object'
+      ? isDark ? project.thumbnail.dark : project.thumbnail.light
+      : project.thumbnail
+    : null;
 
   return (
     <motion.div
@@ -29,9 +38,9 @@ export default function ProjectCard({ project, index = 0 }) {
     >
       <Card hover className="flex flex-col h-full overflow-hidden">
         {/* Thumbnail / placeholder */}
-        {project.thumbnail ? (
+        {thumbnailSrc ? (
           <img
-            src={project.thumbnail}
+            src={thumbnailSrc}
             alt={`${project.title} screenshot`}
             className="w-full h-48 object-cover"
             loading="lazy"

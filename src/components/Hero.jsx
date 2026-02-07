@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { HiOutlineMail, HiOutlineDocumentDownload } from 'react-icons/hi';
 import useTypingAnimation from '../hooks/useTypingAnimation';
 import useScrollReveal from '../hooks/useScrollReveal';
+import { useTheme } from '../context/ThemeContext';
 import Button from './common/Button';
 import personal from '../data/personal';
 
@@ -12,6 +13,7 @@ export default function Hero() {
   const prefersReducedMotion = useReducedMotion();
   const { displayText, isDeleting } = useTypingAnimation(personal.heroRoles);
   const navigate = useNavigate();
+  const { isDark } = useTheme();
 
   const handleContactClick = () => {
     navigate('/contact');
@@ -115,29 +117,23 @@ export default function Hero() {
             initial="hidden"
             animate={imgControls}
             variants={imgVariants}
-            className="flex-shrink-0 w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[360px] lg:h-[360px] relative"
+            className="flex-shrink-0 w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 lg:w-[420px] lg:h-[420px] relative"
           >
             <motion.div
               style={{ y: imageY }}
               className="w-full h-full rounded-full overflow-hidden bg-card-bg shadow-card-hover ring-4 ring-card-bg"
             >
               <img
-                src="/images/profile.webp"
+                src={isDark ? '/images/profile-dark.png' : '/images/profile-light.png'}
                 alt={`Portrait of ${personal.name}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                width={360}
-                height={360}
+                width={420}
+                height={420}
               />
             </motion.div>
-
-            {/* Decorative accent */}
-            <div
-              className="absolute -z-10 inset-0 rounded-full bg-primary/5 translate-x-3 translate-y-3"
-              aria-hidden="true"
-            />
           </motion.div>
         </div>
       </div>

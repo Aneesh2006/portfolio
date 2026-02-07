@@ -27,7 +27,7 @@ function ScrollToHash() {
         }
       }, 100);
       return () => clearTimeout(timer);
-    } else if (pathname === '/') {
+    } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [pathname, hash]);

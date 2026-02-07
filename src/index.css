@@ -41,7 +41,7 @@
 :root {
   /* Layout spacing */
   --content-width: 1200px;
-  --section-padding: clamp(60px, 10vw, 120px);
+  --section-padding: clamp(40px, 8vw, 80px);
 }
 
 /* Base styles */

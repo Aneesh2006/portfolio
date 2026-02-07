@@ -74,7 +74,7 @@ const techStack = {
   devopsCloud: [
     { name: 'Docker', icon: SiDocker, color: '#2496ED', darkColor: '#4DB8FF' },
     { name: 'Vercel', icon: SiVercel, color: '#000000', darkColor: '#FFFFFF' },
-    { name: 'Render', icon: SiRender, color: '#000000', darkColor: '#B8B8B8' },
+    { name: 'Render', icon: SiRender, color: '#000000', darkColor: '#ffffff' },
     { name: 'Railway', icon: SiRailway, color: '#0B0D0E', darkColor: '#FFFFFF' },
     {
       name: 'Google Cloud',

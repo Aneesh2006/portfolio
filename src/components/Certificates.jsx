@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { HiOutlineAcademicCap, HiOutlineExternalLink } from 'react-icons/hi';
+import { HiOutlineAcademicCap, HiOutlineBriefcase, HiOutlineExternalLink } from 'react-icons/hi';
 import useScrollReveal from '../hooks/useScrollReveal';
 import SectionHeading from './common/SectionHeading';
 import Card from './common/Card';
@@ -22,7 +22,11 @@ function CertificateCard({ cert, index }) {
         {/* Icon + Date row */}
         <div className="flex items-start justify-between gap-3 mb-4">
           <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-card-bg text-primary shrink-0">
-            <HiOutlineAcademicCap className="w-5 h-5" aria-hidden="true" />
+            {cert.icon === 'briefcase' ? (
+              <HiOutlineBriefcase className="w-5 h-5" aria-hidden="true" />
+            ) : (
+              <HiOutlineAcademicCap className="w-5 h-5" aria-hidden="true" />
+            )}
           </span>
           <span className="text-secondary text-sm whitespace-nowrap">
             {cert.date}

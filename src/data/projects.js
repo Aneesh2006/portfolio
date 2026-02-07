@@ -11,10 +11,13 @@ const projects = [
       'Step-by-step simulation playback for educational use.',
     ],
     techStack: ['React.js', 'Three.js', 'JavaScript'],
-    github: null,
-    live: null,
+    github: 'https://github.com/Aneesh2006/Distance-Vector-Routing-Simulator',
+    live: 'https://distance-vector-routing-simulator.vercel.app/',
     date: 'Apr 2025',
-    thumbnail: null,
+    thumbnail: {
+      light: '/images/Distance Vector Routing Simulator-light.png',
+      dark: '/images/Distance Vector Routing Simulator-dark.png',
+    },
   },
   {
     id: 2,
@@ -31,7 +34,10 @@ const projects = [
     github: null,
     live: null,
     date: 'May 2024',
-    thumbnail: null,
+    thumbnail: {
+      light: '/images/Library Management System-light.png',
+      dark: '/images/Library Management System-dark.png',
+    },
   },
 ];
 
