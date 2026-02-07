@@ -12,9 +12,9 @@ const STORAGE_KEY = 'portfolio-theme';
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
     try {
-      return localStorage.getItem(STORAGE_KEY) || 'light';
+      return localStorage.getItem(STORAGE_KEY) || 'dark';
     } catch {
-      return 'light';
+      return 'dark';
     }
   });
 
