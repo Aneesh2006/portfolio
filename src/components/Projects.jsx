@@ -44,7 +44,12 @@ export default function Projects() {
         </motion.div>
 
         {/* Desktop: grid layout (hidden on mobile/tablet) */}
-        <div className="hidden lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div
+          className="hidden lg:grid gap-6"
+          style={{
+            gridTemplateColumns: `repeat(${Math.min(projects.length, 3)}, 1fr)`,
+          }}
+        >
           {projects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
